@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <style>
+        /* Your styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to your Profile</h1>
+        <p id="userDetails"></p>
+    </div>
+    <script>
+        function loadProfile() {
+            const username = localStorage.getItem('username');
+            const invitation_code = localStorage.getItem('invitation_code');
+
+            if (username && invitation_code) {
+                document.getElementById('userDetails').textContent = `Username: ${username}, Invitation Code: ${invitation_code}`;
+            } else {
+                document.getElementById('userDetails').textContent = 'No user information available.';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6b73ff, #000dff);
+            background-image: url(pics/image6.jpg);
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Optional: add background to enhance visibility */
+            border-radius: 10px; /* Optional: add border radius for rounded corners */
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .row a {
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .row a:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .menu-icon img {
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .row a:hover .menu-icon {
+            background-color: #fff;
+        }
+
+        .row a:hover .menu-icon,
+        .row a:hover span {
+            color: #000dff;
+        }
+    </style>
+</head>
+<body>
+    <div class="text">
+        <h1>Cognizant</h1>
+        <p>Hi! Welcome</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <a href="starting.html">
+                <div class="menu-icon">
+                    <img src="pics/logo.jpg" alt="Starting">
+                </div>
+                <span>Starting</span>
+            </a>
+            <a href="certificate.html">
+                <div class="menu-icon">
+                    <img src="pics/image9.png" alt="Certificate">
+                </div>
+                <span>Certificate</span>
+            </a>
+            <a href="withdraw.html">
+                <div class="menu-icon">
+                    <img src="pics/image10.png" alt="Withdraw">
+                </div>
+                <span>Withdraw</span>
+            </a>
+            <a href="deposite.html">
+                <div class="menu-icon">
+                    <img src="pics/image16.jpg" alt="Deposit">
+                </div>
+                <span>Deposit</span>
+            </a>
+        </div>
+        <div class="row">
+            <a href="t&c.html">
+                <div class="menu-icon">
+                    <img src="pics/image12.jpg" alt="T&C">
+                </div>
+                <span>T&C</span>
+            </a>
+            <a href="latest_event.html">
+                <div class="menu-icon">
+                    <img src="pics/image13.webp" alt="Latest Event">
+                </div>
+                <span>Latest Event</span>
+            </a>
+            <a href="faq.html">
+                <div class="menu-icon">
+                    <img src="pics/image14.jpg" alt="FAQ">
+                </div>
+                <span>FAQ</span>
+            </a>
+            <a href="about_us.html">
+                <div class="menu-icon">
+                    <img src="pics/image15.jpg" alt="About Us">
+                </div>
+                <span>About Us</span>
+            </a>
+        </div>
+        <div class="row">
+            <a href="vip_level.html">
+                <div class="menu-icon">
+                    <img src="pics/image18.PNG" alt="Level List">
+                </div>
+                <span>VIP Level</span>
+            </a>
+        </div>
+    </div>
+    <footer>
+        <a href="profile.html">Profile</a>
+        <a href="index.html">Back</a>
+    </footer>
+</body>
+</html>

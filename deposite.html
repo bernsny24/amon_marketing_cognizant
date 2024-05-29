@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit</title>
+    <style>
+        body {
+            background-image: url(pics/image4.jpg);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 400px; /* Adjusted the max-width */
+            margin: 20px auto;
+            background-color: aqua;
+            padding: 20px;
+            border-radius: 10px; /* Increased border-radius for a smoother shape */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff; /* Changed title color to blue */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        select {
+            appearance: none;
+            background: transparent; /* Make the select background transparent */
+            background-image: url('down-arrow.png'); /* Add custom arrow image */
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        textarea {
+            resize: none; /* Prevent textarea from being resized */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deposit</h1>
+        <form>
+            <div class="form-group">
+                <label for="currency">Please Select One</label>
+                <select id="currency" name="currency" required>
+                    <option value="">Select Amount</option>
+                    <option value="usd">1,000 USD</option>
+                    <option value="eur">2,000 USD</option>
+                    <option value="gbp">5,000 USD</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="">Select payment method</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="bank-transfer">Bank Transfer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="note">Note</label>
+                <textarea id="note" name="note" placeholder="Enter any additional notes"></textarea>
+            </div>
+            <button type="submit" class="btn">Deposit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Level</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url(pics/image7.jpg);
+        }
+
+        header {
+            background-color: #000dff;
+            color: goldenrod;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .level-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 10px;
+            background-color: goldenrod;
+            display: flex;
+            align-items: center;
+        }
+
+        .level-item h2 {
+            margin: 0;
+        }
+
+        .level-item p {
+            margin: 0;
+        }
+
+        .level-item img {
+            width: 50px; /* Adjust the size of the logo */
+            margin-right: 20px; /* Add spacing between logo and text */
+        }
+
+        .current {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VIP Level</h1>
+    </header>
+    <main>
+        <div id="vip_level">
+            <!-- Level items will be dynamically added here -->
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const levelList = document.getElementById('vip_level');
+
+            // Sample data for levels with logos
+            const levels = [
+                { 
+                    name: 'VIP 1', 
+                    description: 'product quality per set 40, the profit per product is 0.5%, combined product profit is 3%, Top up 100 USDT to activate (CURRENT)',
+                    logo: 'pics/image19.webp' // Replace 'path/to/vip1-logo.png' with the actual path to the logo image
+                },
+                { 
+                    name: 'VIP 2', 
+                    description: 'product quality per set 45, the profit per product is 1%, combined product profit is 6%, Top up 500 USDT to activate',
+                    logo: 'pics/image23.png' // Replace 'path/to/vip2-logo.png' with the actual path to the logo image
+                },
+                { 
+                    name: 'VIP 3', 
+                    description: 'product quality per set 50, the profit per product is 1.5%, combined product profit is 9%, Top up 2000 USDT to activate',
+                    logo: 'pics/image21.png' // Replace 'path/to/vip3-logo.png' with the actual path to the logo image
+                },
+                { 
+                    name: 'VIP 4', 
+                    description: 'product quality per set 55, the profit per product is 2%, combined product profit is 12%, Top up 5000 USDT to activate',
+                    logo: 'pics/image22.jpg' // Replace 'path/to/vip4-logo.png' with the actual path to the logo image
+                }
+                // Add more levels as needed
+            ];
+
+            // Display levels with logos
+            levels.forEach(level => {
+                const levelItem = document.createElement('div');
+                const description = level.description.split(',').map(part => {
+                    if (part.includes('(CURRENT)')) {
+                        return part.replace('(CURRENT)', '<span class="current">(CURRENT)</span>');
+                    }
+                    return part;
+                }).join(',<br>');
+                levelItem.classList.add('level-item');
+                levelItem.innerHTML = `
+                    <img src="${level.logo}" alt="${level.name} Logo"> <!-- Logo image -->
+                    <div>
+                        <h2>${level.name}</h2>
+                        <p>${description}</p>
+                    </div>
+                `;
+                levelList.appendChild(levelItem);
+            });
+        });
+    </script>
+</body>
+</html>

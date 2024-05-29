@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #f3f4f6;
+            color: #333;
+            background-image: url(pics/image17.webp);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #000dff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Optional: add background to enhance visibility */
+            border-radius: 10px;
+        }
+
+        .container a {
+            display: block;
+            text-decoration: none;
+            color: #000dff;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form {
+            margin-bottom: 20px;
+        }
+
+        .form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: left;
+            color: chocolate;
+        }
+
+        .form p {
+            text-align: left;
+            margin: 8px 0;
+            color: greenyellow;
+        }
+
+        .form input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            background: #000dff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #6b73ff;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #000dff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="home.html">Back</a>
+    </header>
+    <h1>Withdraw</h1>
+    <div class="container">
+        <a href="withdraw_history.html">History</a>
+        <div class="form">
+            <label for="withdraw">Withdraw</label>
+            <p>Total Balance: <span id="totalBalance">0 USDT</span></p>
+            <p>*You will receive your withdraw within an hour</p>
+        </div>
+        <h2>proceed to Withdraw</h2>
+        <form id="withdrawForm">
+            <div class="form">
+                <label for="withdraw_amount">Withdraw Amount</label>
+                <input type="number" id="withdraw_amount" placeholder="Type Here" required>
+            </div>
+            <div class="form">
+                <label for="withdraw_password">Withdraw Password</label>
+                <input type="password" id="withdrawPassword" placeholder="Type Your Withdraw Password" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const userId = 1; // Replace with dynamic user ID
+
+        // Fetch user balance
+        function fetchBalance() {
+            fetch(`/balance/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('totalBalance').innerText = `${data.balance} USDT`;
+                })
+                .catch(error => console.error('Error fetching balance:', error));
+        }
+
+        document.getElementById('withdrawForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const withdrawAmount = document.getElementById('withdrawAmount').value;
+            const withdrawPassword = document.getElementById('withdrawPassword').value;
+
+            // Assume the user's withdraw password is stored securely in the session or a variable
+            const storedWithdrawPassword = "userWithdrawPassword"; // For demo purposes, replace with secure retrieval
+
+            if (withdrawPassword !== storedWithdrawPassword) {
+                alert("Incorrect withdraw password");
+                return;
+            }
+
+            // Update balance
+            fetch('/update-balance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId, amount: -withdrawAmount }), // Subtract withdraw amount
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Withdraw request submitted successfully');
+                fetchBalance(); // Refresh balance
+            })
+            .catch(error => console.error('Error updating balance:', error));
+        });
+
+        // Initial balance fetch
+        fetchBalance();
+    </script>
+</body>
+</html>

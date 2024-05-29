@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 15px;
+            background-image: url('pics/image4.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: cyan;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .form {
+            margin-bottom: 15px;
+        }
+
+        .form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form input[type="checkbox"] {
+            width: auto;
+        }
+
+        .form a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .form a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .language-picker {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .language-picker label, .language-picker select {
+            margin-right: 10px;
+        }
+
+        .text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .text p {
+            margin: 10px 0;
+        }
+
+        nav.registration {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav.registration a {
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            <div class="language-picker js-language-picker">
+                <form action="" class="language-picker__form">
+                    <label for="language-picker-select">Select your language</label>
+                    <select name="language-picker-select" id="language-picker-select">
+                        <option lang="de" value="deutsch">Deutsch</option>
+                        <option lang="en" value="english" selected>English</option>
+                        <option lang="fr" value="francais">Français</option>
+                        <option lang="it" value="italiano">Italiano</option>
+                        <option lang="asp" value="español">Español</option>
+                    </select>
+                    <button type="reset">Cancel</button>
+                </form>
+            </div>
+            <h1>Cognizant</h1>
+            <p>Hi! Welcome</p>
+            <p>Please register to access more content</p>
+        </div>
+        <div class="form">
+            <h1>Register</h1>
+            <p>Please register to access more content</p>
+            <nav class="registration">
+                <a href="index.html">Back To Login</a>
+            </nav>
+            <form id="registrationForm" action="register.php" method="post">
+                <div class="form">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="Type nick name" required>
+                </div>
+                <div class="form">
+                    <label for="phone_number">Phone No.</label>
+                    <input type="number" name="phone_number" placeholder="Type Phone No." required>
+                </div>
+                <div class="form">
+                    <label for="loginPassword">Login Password</label>
+                    <input type="password" id="loginPassword" name="Login_Password" placeholder="Type Login Password" required>
+                </div>
+                <div class="form">
+                    <label for="confirmLoginPassword">Confirm Login Password</label>
+                    <input type="password" id="confirmLoginPassword" name="confirm_Login_Password" placeholder="Confirm Login Password" required>
+                </div>
+                <div class="form">
+                    <label for="withdrawPassword">Withdraw Password</label>
+                    <input type="password" id="withdrawPassword" name="Withdraw_Password" placeholder="Type Withdraw Password" required>
+                </div>
+                <div class="form">
+                    <label for="invitation_code">Invitation Code</label>
+                    <input type="text" name="invitation_code" placeholder="Type invitation code">
+                </div>
+                <div class="form">
+                    <input type="checkbox" id="terms" name="terms" value="agreed" required>
+                    <label for="terms">I accept and agree to the <a href="Terms&conditions">Terms & Conditions</a></label>
+                </div>
+                <button type="button" onclick="registerUser()">Register</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function registerUser() {
+            const form = document.getElementById('registrationForm');
+            const formData = new FormData(form);
+
+            fetch('register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem('username', data.username);
+                    localStorage.setItem('invitation_code', data.invitation_code);
+                    window.location.href = 'home.html';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
